@@ -98,6 +98,15 @@ entity Products {
         Width            : Decimal(16, 2);
         Depth            : Decimal(16, 2);
         Quantity         : Decimal(16, 2);
+        Supplier         : Association to Suppliers;
+        UnitOfMeasure    : Association to UnitOfMeasures;
+        Currency         : Association to Currencies;
+        DimensionUnit    : Association to DimensionUnits;
+        Category         : Association to Categories;
+        SalesData        : Association to many SalesData
+                               on SalesData.Product = $self;
+        Reviews          : Association to many ProductReview
+                               on Reviews.Product = $self;
 };
 
 entity Suppliers {
@@ -107,7 +116,32 @@ entity Suppliers {
         Email   : String;
         Phone   : String;
         Fax     : String;
+        Product : Association to many Products
+                      on Product.Supplier = $self;
 };
+
+entity Orders {
+    key ID       : UUID;
+        Date     : Date;
+        Customer : String;
+        // Item     : Composition of many OrderItems
+        //                on Item.Order = $self;
+        Item     : Composition of many {
+                       key Position : Integer;
+                           Order    : Association to Orders;
+                           Product  : Association to Products;
+                           Quantity : Integer;
+
+                   }
+};
+
+entity OrderItems {
+    key ID       : UUID;
+        Order    : Association to Orders;
+        Product  : Association to Products;
+        Quantity : Integer;
+}
+
 
 entity Categories {
     key ID   : String(1);
@@ -141,15 +175,20 @@ entity Months {
 };
 
 entity ProductReview {
-    key Name    : String;
+    key ID      : UUID;
+        Name    : String;
         Rating  : Integer;
         Comment : String;
+        Product : Association to Products;
 };
 
 entity SalesData {
-    key ID           : UUID;
-        DeliveryDate : DateTime;
-        Revenue      : Decimal(16, 2);
+    key ID            : UUID;
+        DeliveryDate  : DateTime;
+        Revenue       : Decimal(16, 2);
+        Product       : Association to Products;
+        Currency      : Association to Currencies;
+        DeliveryMonth : Association to Months;
 };
 
 entity SelProducts   as select from Products;
@@ -206,6 +245,24 @@ entity ProjProducts3 as
 // entity ProjParamProducts(pName: String) as projection on Products where Name = :pName;
 
 extend Products with {
-    PriceConditions: String(2);
-    PriceDetermination: String(3);
+    PriceConditions    : String(2);
+    PriceDetermination : String(3);
 };
+
+entity Course {
+    key ID      : UUID;
+        Student : Association to many StudentCourse
+                      on Student.Course = $self;
+}
+
+entity Student {
+    key ID     : UUID;
+        Course : Association to many StudentCourse
+                     on Course.Student = $self;
+}
+
+entity StudentCourse {
+    key ID      : UUID;
+        Student : Association to Student;
+        Course  : Association to Course;
+}
