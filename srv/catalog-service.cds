@@ -11,5 +11,5 @@ service CatalogService {
     entity Months         as projection on logali.Months;
     entity Reviews        as projection on logali.ProductReview;
     entity Order          as projection on logali.Orders;
-    entity OrderItem      as projection on logali.OrderItems;
+    entity OrderItem      as projection on logali.OrderItems;    
 }
