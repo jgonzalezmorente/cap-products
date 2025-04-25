@@ -1,0 +1,6 @@
+ID,Name,Address_Street,Address_City,Address_State,Address_PostalCode,Address_Country,Email,Phone,Fax
+45c960b8-12fd-4b42-8941-1bddd7548095,Proveedor 1,Calle 1,CiudadX,NY,17352,USA,proveedor1@ejemplo.com,+34 600 000 01,+34 600 000 11
+1bbfdb34-782e-483c-a27c-0bdf7be54442,Proveedor 2,Calle 2,CiudadX,WA,45650,ITA,proveedor2@ejemplo.com,+34 600 000 02,+34 600 000 12
+44108e5e-86cc-4c4c-8e8f-5dca3fd16251,Proveedor 3,Calle 3,CiudadX,NY,83889,DEU,proveedor3@ejemplo.com,+34 600 000 03,+34 600 000 13
+55067c58-d9a9-47ae-8cf7-4595762f3865,Proveedor 4,Calle 4,CiudadX,NY,42219,ESP,proveedor4@ejemplo.com,+34 600 000 04,+34 600 000 14
+6275535c-ace9-408a-bdaf-ec85bbffd4aa,Proveedor 5,Calle 5,CiudadX,FL,67870,ITA,proveedor5@ejemplo.com,+34 600 000 05,+34 600 000 15

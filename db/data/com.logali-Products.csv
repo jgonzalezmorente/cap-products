@@ -1,0 +1,11 @@
+ID,Name,Description,ImageUrl,ReleaseDate,DiscontinuedDate,Price,Height,Width,Depth,Quantity
+04426a51-58fc-4b8f-a319-5328b199db21,Producto 1,Descripción del producto 1,https://example.com/images/product1.jpg,2023-10-13T00:00:00,2024-04-19T00:00:00,290.16,11.01,43.04,41.56,191.17
+4dc209a0-007b-46a3-8094-1430e812024d,Producto 2,Descripción del producto 2,https://example.com/images/product2.jpg,2023-05-01T00:00:00,2024-04-27T00:00:00,809.84,34.29,19.25,13.87,72.66
+4bd08e66-6934-46b5-b16f-9ce520f52503,Producto 3,Descripción del producto 3,https://example.com/images/product3.jpg,2023-11-21T00:00:00,2024-06-20T00:00:00,893.04,33.59,26.89,36.32,496.15
+75239688-034f-4a26-970c-c2eea2d6d97a,Producto 4,Descripción del producto 4,https://example.com/images/product4.jpg,2023-02-09T00:00:00,2023-06-30T00:00:00,971.86,36.02,13.46,47.15,315.13
+ccd5fd64-a3fa-48e3-8cfa-0393b60e9e46,Producto 5,Descripción del producto 5,https://example.com/images/product5.jpg,2023-10-22T00:00:00,2024-10-07T00:00:00,326.34,29.9,42.13,22.53,210.09
+491d5053-9d79-4b44-82fb-05dd21187024,Producto 6,Descripción del producto 6,https://example.com/images/product6.jpg,2023-12-16T00:00:00,2025-03-27T00:00:00,744.04,16.28,32.7,36.9,468.34
+04356743-5dbe-45a5-97b3-3063c3498648,Producto 7,Descripción del producto 7,https://example.com/images/product7.jpg,2023-10-12T00:00:00,2024-07-27T00:00:00,494.72,34.25,43.08,15.35,431.45
+f1d19c59-3c05-4df8-b5be-72dcaf52c778,Producto 8,Descripción del producto 8,https://example.com/images/product8.jpg,2023-01-02T00:00:00,2023-11-30T00:00:00,865.18,47.5,33.15,18.04,30.29
+168b9656-962e-4820-ad3b-7e41de411e6d,Producto 9,Descripción del producto 9,https://example.com/images/product9.jpg,2023-09-14T00:00:00,2024-03-21T00:00:00,611.1,43.89,42.29,37.01,154.23
+ff0e8227-09f6-4e21-b3a7-9f2787a397c7,Producto 10,Descripción del producto 10,https://example.com/images/product10.jpg,2023-05-03T00:00:00,2023-08-12T00:00:00,892.21,20.74,6.12,10.35,383.36
