@@ -107,13 +107,13 @@ context sales {
     }
 
     entity Supplier : cuid, managed {
-        Name     : localized materials.Products:Name;
-        Address  : Address;
-        Email    : String;
-        Phone    : String;
-        Fax      : String;
+        Name    : localized materials.Products:Name;
+        Address : Address;
+        Email   : String;
+        Phone   : String;
+        Fax     : String;
         Product : Association to many materials.Products
-                       on Product.Supplier = $self;
+                      on Product.Supplier = $self;
     };
 
     entity Months {
@@ -130,7 +130,7 @@ context sales {
         };
 
     entity SelProducts2 as
-        select from  materials.Products {
+        select from materials.Products {
             Name,
             Price,
             Quantity
@@ -158,4 +158,33 @@ context sales {
         Currency      : Association to materials.Currencies;
         DeliveryMonth : Association to Months;
     };
+}
+
+context reports {
+    entity AverageRating as
+        select from logali.materials.ProductsReview {
+            Product.ID  as ProductId,
+            avg(Rating) as AverageRating : Decimal(16, 2)
+        }
+        group by
+            Product.ID;
+    
+    entity Products as
+        select from logali.materials.Products
+        mixin {
+            ToStockAvailability: Association to logali.materials.StockAvailability
+                on ToStockAvailability.ID = $projection.StockAvailability;
+            ToAverageRating: Association to AverageRating
+                on ToAverageRating.ProductId = ID;
+        }
+        into {
+            *,
+            ToAverageRating.AverageRating as Rating,
+            case
+                when Quantity >= 8 then 3
+                when Quantity > 0 then 2
+                else 1
+            end as StockAvailability: Integer,
+            ToAverageRating
+        }
 }

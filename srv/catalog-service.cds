@@ -17,7 +17,7 @@ using com.logali as logali from '../db/schema';
 
 define service CatalogService {
     entity Products          as
-        select from logali.materials.Products {
+        select from logali.reports.Products {
             ID,
             Name          as ProductName     @mandatory,
             Description                      @mandatory,
@@ -28,7 +28,13 @@ define service CatalogService {
             Height,
             Width,
             Depth,
-            Quantity,
+            Quantity                         @(
+                mandatory,
+                assert.range: [
+                    0.00,
+                    20
+                ]
+            ),
             UnitOfMeasure as ToUnitOfMeasure @mandatory,
             Currency      as ToCurrency      @mandatory,
             Category      as ToCategory      @mandatory,
@@ -36,7 +42,10 @@ define service CatalogService {
             DimensionUnit as ToDimensionUnit,
             SalesData,
             Supplier,
-            Reviews
+            Reviews,
+            Rating,
+            StockAvailability,
+            ToAverageRating
         };
 
     @readonly
@@ -103,8 +112,53 @@ define service CatalogService {
 
     @readonly
     entity VH_DimensionUnits as
-        select from logali.materials.DimensionsUnits {
+        select
             ID          as Code,
             Description as Text
-        };
+        from logali.materials.DimensionsUnits;
+};
+
+define service MyService {
+    entity SupplierProduct  as
+        select from logali.materials.Products[Name = 'Producto 7']{
+            *,
+            Name,
+            Description,
+            Supplier.Address
+        }
+        where
+            Supplier.Address.PostalCode = 83889;
+
+    entity SuppliersToSales as
+        select
+            Supplier.Email,
+            Category.Name,
+            SalesData.Currency.ID as Currency
+        from logali.materials.Products;
+
+    entity EntityInfix      as
+        select Supplier[Name = 'Proveedor 3'].Phone from logali.materials.Products
+        where
+            Products.Name = 'Producto 7';
+
+    entity EntityJoin       as
+        select Phone from logali.materials.Products
+        left join logali.sales.Supplier as supp
+            on  supp.ID   = Products.Supplier.ID
+            and supp.Name = 'Proveedor 3'
+        where
+            Products.Name = 'Producto 7';
+};
+
+define service Reports {
+    entity AverageRating as projection on logali.reports.AverageRating;
+    entity EntityCasting as
+        select 
+            cast (Price as Integer) as Price,
+            Price as Price2 : Integer
+        from logali.materials.Products;
+    entity EntityExists as 
+        select from logali.materials.Products {
+            Name
+        } where exists Supplier[Name = 'Proveedor 10'];
 }
