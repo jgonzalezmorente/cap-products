@@ -1,6 +1,9 @@
 namespace com.training;
 
-using {cuid} from '@sap/cds/common';
+using {
+    cuid,
+    Country
+} from '@sap/cds/common';
 
 // type EamilsAddresses_01 : many {
 //     kind  : String;
@@ -82,4 +85,6 @@ entity Orders {
         CreatedOn   : Date;
         Reviewed    : Boolean;
         Approved    : Boolean;
+        Country     : Country;
+        Status      : String(1);
 }

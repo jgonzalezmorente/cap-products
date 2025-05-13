@@ -26,3 +26,28 @@ Content-Type: application/json
 
 ### Delete Order
 DELETE http://localhost:4004/odata/v4/manage-orders/Orders('jgonzalezmorente@gmail.com') HTTP/1.1
+
+### Get Customer Rate - Function
+GET http://localhost:4004/odata/v4/manage-orders/getClientTaxRate(clientEmail='thomas.hamilton@gmail.com') HTTP/1.1
+
+### Cancel Order - Action
+POST http://localhost:4004/odata/v4/manage-orders/cancelOrder HTTP/1.1
+Content-Type: application/json
+
+{
+    "clientEmail": "samantha.vega@gmail.com"    
+}
+
+### Get Customer Rate - Function Bound
+GET http://localhost:4004/odata/v4/manage-orders/Orders('samantha.vega@gmail.com')/ManageOrders.getClientTaxRate(clientEmail='thomas.hamilton@gmail.com')
+
+### Cancel Order - Action Bound
+POST http://localhost:4004/odata/v4/manage-orders/Orders('samantha.vega@gmail.com')/ManageOrders.cancelOrder
+Content-Type: application/json
+
+{
+    "clientEmail": "thomas.hamilton@gmail.com"    
+}
+
+### Get Incidents
+GET http://localhost:4004/odata/v4/sapbackend-exit/Incidents

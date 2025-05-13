@@ -15,6 +15,7 @@ using com.logali as logali from '../db/schema';
 //     entity OrderItem      as projection on logali.sales.OrderItems;
 // }
 
+@protocol: ['graphql', 'odata']
 define service CatalogService {
     entity Products          as
         select from logali.reports.Products {
