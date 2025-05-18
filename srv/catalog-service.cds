@@ -1,19 +1,4 @@
 using com.logali as logali from '../db/schema';
-// using com.training as training from '../db/training';
-
-// service CatalogService {
-//     entity Products       as projection on logali.materials.Products;
-//     entity Supplier       as projection on logali.sales.Supplier;
-//     entity UnitOfMeasure  as projection on logali.materials.UnitOfMeasure;
-//     entity Currency       as projection on logali.materials.Currencies;
-//     entity Months         as projection on logali.sales.Months;
-//     entity DimensionUnit  as projection on logali.materials.DimensionsUnits;
-//     entity Category       as projection on logali.materials.Category;
-//     entity SalesData      as projection on logali.sales.SalesData;
-//     entity ProductsReview as projection on logali.materials.ProductsReview;
-//     entity Order          as projection on logali.sales.Orders;
-//     entity OrderItem      as projection on logali.sales.OrderItems;
-// }
 
 @protocol: ['graphql', 'odata']
 define service CatalogService {
@@ -38,7 +23,9 @@ define service CatalogService {
             ),
             UnitOfMeasure as ToUnitOfMeasure @mandatory,
             Currency      as ToCurrency      @mandatory,
-            Category      as ToCategory      @mandatory,
+            Currency.ID   as CurrencyId,
+            Category      as ToCategory      @mandatory,            
+            Category.ID   as CategoryId,
             Category.Name as Category        @readonly,
             DimensionUnit as ToDimensionUnit,
             SalesData,
@@ -83,7 +70,7 @@ define service CatalogService {
         };
 
     @readonly
-    entity StockAvailabilit  as
+    entity StockAvailability  as
         select from logali.materials.StockAvailability {
             ID,
             Description,

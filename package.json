@@ -20,9 +20,16 @@
     "cds-swagger-ui-express": "^0.10.0"
   },
   "scripts": {
-    "start": "cds-serve"
+    "start": "cds-serve",
+    "watch-product": "cds watch --open product/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "cds": {
+    "i18n": {
+      "default_language": "es",
+      "folders": [
+        "_i18n"
+      ]
+    },
     "requires": {
       "sapbackend": {
         "kind": "odata-v2",
@@ -34,5 +41,8 @@
         }
       }
     }
-  }
+  },
+  "sapux": [
+    "app/product"
+  ]
 }
